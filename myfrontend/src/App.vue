@@ -4,16 +4,16 @@
     <nav class="navbar is-fullwidth is-transparent px-5" role="navigation" aria-label="main navigation" style="position: absolute; width: 100%; background-color: rgba(0, 0, 0, 0)">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item has-text-white">
-          <strong>Home</strong>
+          <p>Home</p>
         </router-link>
         <router-link to="#" class="navbar-item has-text-white">
-          <strong>Promotion</strong>
+          <p>Promotion</p>
         </router-link>
         <router-link to="/user/cart" class="navbar-item has-text-white">
-          <strong>ตระกร้า</strong>
+          <p>ตระกร้า</p>
         </router-link>
         <router-link to="/user/finish" class="navbar-item has-text-white">
-          <strong>ชำระแล้ว</strong>
+          <p>ชำระแล้ว</p>
         </router-link>
         <a
           role="button"
@@ -60,11 +60,6 @@
             </div>
             </div>
           </div>
-          <!-- <div v-if="!user" class="navbar-item">
-            <router-link to="/user/signup">
-             <a class="button is-light">Log in</a>
-            </router-link>
-          </div> -->
         </div>
       </div>
     </nav>
@@ -81,12 +76,9 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  position: absolute;
-} */
+  @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&family=Sarabun:wght@300&display=swap');
+#app {
+      font-family: 'Prompt', sans-serif;
+      font-family: 'Sarabun', sans-serif; 
+}
 </style>

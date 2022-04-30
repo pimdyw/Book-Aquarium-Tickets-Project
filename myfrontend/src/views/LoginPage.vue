@@ -2,10 +2,10 @@
   <div>
         <section class="level">
             <section class="hero level-item is-fullheight column is-narrow" style="background-color: #61A4BC;">
-                <div style="margin-top: 4rem">
+                <div style="margin-top: 5rem">
                     <div class="columns is-centered mb-3">
                         <figure class="image is-128x128">
-                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                            <img class="is-rounded" :src="require('../assets/fish.png')">
                           </figure>
                     </div>
                     <p class="subtitle has-text-centered mb-3 has-text-white">
@@ -40,13 +40,10 @@
                     </div> -->
                 </div>
             </section>
-            <section class="hero has-background-danger level-item is-fullheight column">
-                <div>
-                    <img :src="require('../assets/family.jpg')" alt="ครอบครัว" class="image is-fullheight">
+            <div class="hero has-background-danger level-item is-fullheight column" :style="{'background-image':'url(https://media.karousell.com/media/photos/products/2021/11/7/sea_aquarium_adult_today_1636250321_b32b7c12.jpg)'}">
+                    <!-- <img :src="require('../assets/family.jpg')" alt="ครอบครัว" class="image is-fullheight"> -->
                     <!-- style="background-image: url('../assets/family.png'); -->
-                
-                </div>
-            </section>
+            </div>
         </section>
     </div>
 </template>
@@ -59,5 +56,10 @@ export default {
   }
 </script>
 
-<style scoped>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&family=Sarabun:wght@300&display=swap');
+    *{
+        font-family: 'Prompt', sans-serif;
+        font-family: 'Sarabun', sans-serif;  
+    }
 </style>
