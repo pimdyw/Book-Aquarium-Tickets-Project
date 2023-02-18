@@ -1,40 +1,73 @@
 <template>
   <div class="hero is-fullheight" style="background-color: #1A132F;">
             <div style="margin: 6rem;">
-                <p class="is-size-2	has-text-white">สำเร็จ</p>
-                <div class="is-large mt-5 p-4" style="background-color: #EBEBFF;">
+                <p class="is-size-2	has-text-white">สถานะ Order</p>
+                <div class="is-large mt-5 p-4" style="background-color: #EBEBFF;" v-for="item in order" :key="item.index">
                     <div class="level">
-                        <p class="is-size-5 level-left">บัตรชมเที่ยวเดียวออนไลน์ถูกกว่า</p>
-                        <strong class="is-size-5 level-right has-text-link">สำเร็จแล้ว</strong>
+                        <p class="is-size-5 level-left">รหัส Order: {{item.order_id}}</p>
+                        <strong class="is-size-5 level-right has-text-link">{{item.order_status}}</strong>
                     </div>
-                    <div class="level">
-                        <img src="#" alt="รูปตั๋ว" width="200em" height="100em" class="image">
-                        <div>
-                            <p>เด็ก</p>
-                            <p>ผู้ใหญ่</p>
-                            <p class="mt-3">วันเข้าชม 03-11-2022</p>
+                    <div class="hero-body p-5">
+                        <img :src="require('../assets/thx.jpg')" alt="รูปตั๋ว" width="200em" height="100em">
+                        <div class="ml-6">
+                            <p>รหัสผู้ซื้อ: {{item.user_id}}</p>
+                            <p>รวมการสั่งซื้อ: ฿{{item.order_price}}</p>
+                            <p>วันจองบัตรเข้าชม: {{item.order_date}}</p>
                         </div>
-                        <div style="margin-bottom: 2.5rem;">
-                            <p>x2</p>
-                            <p>x2</p>
-                        </div>
-                        <div>
-                            <p>560฿</p>
-                            <p>660฿</p>
-                            <p class="mt-3 has-text-link">รวมการสั่งซื้อ: ฿2,400</p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    data() {
-      return {}
-    }
-  }
+  data() {
+    return {
+      order: [],
+      user: []
+    };
+  },
+  mounted() {
+    this.onAuthChange()
+    // this.getOrderDetail();
+    // this.onAuthChange()
+  },
+  methods: {
+    getOrderDetail(id) {
+      axios
+        .get("http://localhost:3000/user/order/finish/"+id)
+        .then((response) => {
+          console.log(response);
+          this.order = response.data.order;
+        })
+        .catch((error) => {
+          this.error = error.response.data.message;
+        });
+    },
+    onAuthChange () {
+          const token = localStorage.getItem('token')
+          if (token) {
+            this.getUser()
+          }
+          console.log(token)
+        },
+      getUser () {
+          const token = localStorage.getItem('token')
+          axios.get('http://localhost:3000/user/me', { headers: {Authorization: 'Bearer ' + token} }).then(res => {
+            this.user = res.data
+            // this.$router.push({path: '/'})
+            this.getOrderDetail(this.user.user_id)
+            console.log(this.user.user_id)
+            console.log(this.user)
+          })
+        },
+    
+  },
+};
 </script>
 
 <style>

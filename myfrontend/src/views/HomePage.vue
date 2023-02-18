@@ -10,9 +10,13 @@
                         <p class="subtitle has-text-white">
                         Let me introduce a magic of the sea
                         </p>
-                        <button class="button is-link is-rounded">
-                            <p>จองตั๋ว</p>
-                        </button>
+                        <div v-if="user">
+                            <button class="button is-link is-rounded"  v-if="user.role != 'admin'">
+                                <router-link to="/user/promotion" class="has-text-white">
+                                    <p>จองตั๋ว</p>
+                                </router-link>
+                            </button>
+                        </div>
                     </div>
                 </section>
                 <section class="hero p-0">
@@ -26,11 +30,36 @@
 </template>
 
 <script>
-export default {
-    data() {
-      return {}
+import axios from 'axios'
+    
+    export default {
+      data () {
+        return {
+          user: null ,
+        apiURL:"http://localhost:3000",
+        }
+      },
+      mounted () {
+        this.onAuthChange()
+      },
+      methods: {
+        onAuthChange () {
+          const token = localStorage.getItem('token')
+          if (token) {
+            this.getUser()
+          }
+          console.log(token)
+        },
+        getUser () {
+          const token = localStorage.getItem('token')
+          axios.get('http://localhost:3000/user/me', { headers: {Authorization: 'Bearer ' + token} }).then(res => {
+            this.user = res.data
+            console.log(this.user.user_id)
+            console.log(this.user)
+          })
+        }
+      }
     }
-  }
 </script>
 
 <style>
