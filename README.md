@@ -1,2 +1,2 @@
 # Book-Aquarium-Tickets-Project
-## Project of Web Programming
+## It is an aquarium ticket booking website and announcing aquarium promotions. The website has both the customer side and the admin side to manage information.
